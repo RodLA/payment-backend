@@ -49,20 +49,20 @@ class UserController extends Controller
     }
 
     public function all(){
-        $users = User::all();
+        // $users = User::all();
 
-        foreach( $users as $user ){
-            $payments = Payment::where(["user_id"=> $user->id])->get();
+        // foreach( $users as $user ){
+        //     $payments = Payment::where(["user_id"=> $user->id])->get();
 
-            $total = 0;
-            foreach ($payments as $payment) {
-                $total += $payment->amount;
-            }
-            //Nueva propiedad
-            $user->total_payments = $total;
-            $user->number_payments = count($payments);
-        }
-
+        //     $total = 0;
+        //     foreach ($payments as $payment) {
+        //         $total += $payment->amount;
+        //     }
+        //     //Nueva propiedad
+        //     $user->total_payments = $total;
+        //     $user->number_payments = count($payments);
+        // }
+        $users = DB::select('SELECT * FROM list_client');
         return $users;
     }
 }
